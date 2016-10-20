@@ -1,9 +1,16 @@
 package com.retail.manager.service;
 
+import com.google.maps.GeoApiContext;
+import com.google.maps.GeocodingApi;
+import com.google.maps.model.GeocodingResult;
+import com.retail.manager.domain.Address;
+import com.retail.manager.domain.Geo;
 import com.retail.manager.domain.Shop;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -15,6 +22,9 @@ public class ShopService {
 
 
     private Set<Shop> retailShops ;
+
+    @Value("${google.maps.geo.api.key}")
+    private String apiKey;
 
     ShopService()
     {
@@ -28,16 +38,79 @@ public class ShopService {
 
     public Set<Shop> getShopsNearby(Double latitude,Double longitude)
     {
-        // TODO implement it
+        // TODO implement it later
         return retailShops;
     }
 
     public boolean addShop(Shop newShop)
     {
 
+        // validate data before processing
+        if(validateData(newShop)==false)
+            return false;
+
+        Integer number = newShop.getShopAddress().getNumber();
+        String postcode = newShop.getShopAddress().getPostcode();
+
+        // google map geolocation call
+        try {
+                GeoApiContext context = new GeoApiContext().setApiKey(apiKey);
+                GeocodingResult[] results = GeocodingApi.geocode(context,
+                        number.toString() + "," + postcode).await();
+
+                if(results.length==0) {
+                    newShop.setError("No location found for the give address : " + number.toString() + "," + postcode);
+                    return  false;
+                }
+
+                // get first available data
+                Double lat = results[0].geometry.location.lat;
+                Double lng = results[0].geometry.location.lng;
+
+                Geo geo = new Geo(lat,lng);
+                newShop.setShopGeo(geo);
+
+        }catch(Exception e)
+        {
+            newShop.setError(e.getMessage());
+            return false;
+        }
+
         return retailShops.add(newShop);
 
     }
+
+    private boolean validateData(Shop newShop)
+    {
+        String name = newShop.getShopName();
+        Integer number = null;
+        String postcode = null;
+
+        Address address = newShop.getShopAddress();
+
+        if(null != address) {
+            number = address.getNumber();
+             postcode = address.getPostcode();
+        }
+
+        if(null==name || null == number || null==postcode) {
+            newShop.setError("required data is missing. please provide shop name and address both.");
+            return false;
+        }
+
+        Optional<Shop> shop =
+                retailShops
+                .stream()
+                .filter(e -> e.getShopName().equals(name))
+                .findFirst();
+
+        if(shop.isPresent()) {
+            newShop.setError("Shop with name '"+name+"' already exits.");
+            return false;
+        }else
+            return true;
+    }
+
 
 
     private void initData()
