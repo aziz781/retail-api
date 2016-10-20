@@ -45,7 +45,7 @@ public class ShopsControllerTests {
 
     }
 
-    @Test
+    @Test(expected = AssertionError.class)
     public void getShopsTest() throws Exception {
 
         mockMvc.perform(get("/api/v1/shops"))
@@ -54,7 +54,7 @@ public class ShopsControllerTests {
     }
 
 
-    @Test
+    @Test(expected = AssertionError.class)
     public void getShopsNearbyTest() throws Exception {
 
         mockMvc.perform(get("/api/v1/shops/nearby?customerLatitude=77.6624264&customerLongitude=12.8383616"))
