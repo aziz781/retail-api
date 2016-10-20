@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -26,6 +27,22 @@ public class ShopsController {
     public ResponseEntity getShops() {
 
         return new ResponseEntity( shopService.getShops(), null, HttpStatus.OK);
+
+    }
+
+    @RequestMapping(value = "/{shopName}",method= RequestMethod.GET ,produces = "application/json")
+    public ResponseEntity getShop(@PathVariable("shopName") String shopName) {
+
+        Optional<Shop> foundShop = shopService.getShop(shopName);
+
+        if(foundShop.isPresent())
+         return new ResponseEntity(foundShop.get(), null, HttpStatus.OK);
+        else {
+            Shop shop = new Shop();
+            shop.setStatus(HttpStatus.NOT_FOUND.getReasonPhrase());
+            shop.setError("No data found");
+            return new ResponseEntity(null, null, HttpStatus.NOT_FOUND);
+        }
 
     }
 
