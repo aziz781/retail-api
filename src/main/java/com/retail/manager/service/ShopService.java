@@ -14,6 +14,8 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static com.retail.manager.utils.DistanceCalculator.calculateDistance;
+
 /**
  * Created by abdulaziz on 20/10/2016.
  */
@@ -65,8 +67,11 @@ public class ShopService {
 
     public Set<Shop> getShopsNearby(Double latitude,Double longitude)
     {
-        // TODO implement it later
-        return retailShops;
+        // find the shops nearby (within 10 miles of the customer location)
+        return retailShops
+                .stream()
+                .filter(e-> calculateDistance(e.getShopGeo().getLatitude(),e.getShopGeo().getLongitude(),latitude,longitude)<10)
+                .collect(Collectors.toSet());
     }
 
     public boolean addShop(Shop newShop)
