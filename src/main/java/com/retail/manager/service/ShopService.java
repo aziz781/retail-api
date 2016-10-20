@@ -36,7 +36,11 @@ public class ShopService {
     {
         Function<Shop,Shop> addLinks = (e) -> {
             e.getShopName();
-            List<Link> links = Arrays.asList(new Link("/shops/"+e.getShopName(),"self"));
+            List<Link> links = Arrays.asList(
+                    // self
+                    new Link("/api/v1/shops/"+e.getShopName(),"self"),
+                    // nearby
+                    new Link("/api/v1/shops/nearby?customerLatitude="+e.getShopGeo().getLatitude()+"&customerLongitude="+e.getShopGeo().getLongitude(),"Shops Nearby"));
             e.setLinks(links);
             return e;
         };
