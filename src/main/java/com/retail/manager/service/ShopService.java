@@ -27,6 +27,19 @@ public class ShopService {
     @Value("${google.maps.geo.api.key}")
     private String apiKey;
 
+
+
+    Function<Shop,Shop> addLinks = (e) -> {
+        e.getShopName();
+        List<Link> links = Arrays.asList(
+                // self
+                new Link("/api/v1/shops/"+e.getShopName(),"self"),
+                // nearby
+                new Link("/api/v1/shops/nearby?customerLatitude="+e.getShopGeo().getLatitude()+"&customerLongitude="+e.getShopGeo().getLongitude(),"Shops Nearby"));
+        e.setLinks(links);
+        return e;
+    };
+
     ShopService()
     {
         initData();
@@ -34,17 +47,6 @@ public class ShopService {
 
     public Set<Shop> getShops()
     {
-        Function<Shop,Shop> addLinks = (e) -> {
-            e.getShopName();
-            List<Link> links = Arrays.asList(
-                    // self
-                    new Link("/api/v1/shops/"+e.getShopName(),"self"),
-                    // nearby
-                    new Link("/api/v1/shops/nearby?customerLatitude="+e.getShopGeo().getLatitude()+"&customerLongitude="+e.getShopGeo().getLongitude(),"Shops Nearby"));
-            e.setLinks(links);
-            return e;
-        };
-
          return retailShops
                  .stream()
                  .map(addLinks)
@@ -57,6 +59,7 @@ public class ShopService {
             return retailShops
                     .stream()
                     .filter(e -> e.getShopName().equals(shopName))
+                    .map(addLinks)
                     .findFirst();
     }
 

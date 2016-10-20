@@ -1,6 +1,9 @@
 package com.retail.manager.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 
@@ -8,11 +11,14 @@ import java.util.List;
  * Created by abdulaziz on 20/10/2016.
  */
 
+@ApiModel
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Shop {
 
+    @JsonProperty(required = true)
     private String shopName;
 
+    @JsonProperty(required = true)
     private Address shopAddress;
 
     private Geo shopGeo;
@@ -42,6 +48,7 @@ public class Shop {
     }
 
 
+    @ApiModelProperty(position = 0,required = true, value = "a unique shop name")
     public String getShopName() {
         return shopName;
     }
@@ -51,6 +58,7 @@ public class Shop {
     }
 
 
+    @ApiModelProperty(position = 1,required = true, value = "a address for the shop.")
     public Address getShopAddress() {
         return shopAddress;
     }
@@ -59,7 +67,7 @@ public class Shop {
         this.shopAddress = shopAddress;
     }
 
-
+    @ApiModelProperty(position = 3,value = "Shop geo Location.")
     public Geo getShopGeo() {
         return shopGeo;
     }
@@ -68,6 +76,7 @@ public class Shop {
         this.shopGeo = shopGeo;
     }
 
+    @ApiModelProperty(position = 4,value = "response status")
     public String getStatus() {
         return status;
     }
@@ -76,7 +85,7 @@ public class Shop {
         this.status = status;
     }
 
-
+    @ApiModelProperty(position = 5,value = "response error  details if any")
     public String getError() {
         return error;
     }
@@ -86,6 +95,7 @@ public class Shop {
     }
 
 
+    @ApiModelProperty(position = 6,value = "resource related links")
     public List<Link> getLinks() {
         return links;
     }
