@@ -34,6 +34,15 @@ GET /api/v1/shops/nearby?customerLatitude=77.6624264&customerLongitude=12.838361
 http://localhost:8081/retail/api/v1/shops/nearby?customerLatitude=77.6624264&customerLongitude=12.8383616
 ```
 
+
+```
+GET /api/v1/shops/{shopName} HTTP/1.1
+
+http://localhost:8081/retail/api/v1/shops/{shopName}
+
+```
+
+
 ```
 
 POST /api/v1/shops/ HTTP/1.1
