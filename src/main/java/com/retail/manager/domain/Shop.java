@@ -2,6 +2,8 @@ package com.retail.manager.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.util.List;
+
 /**
  * Created by abdulaziz on 20/10/2016.
  */
@@ -14,6 +16,8 @@ public class Shop {
     private Address shopAddress;
 
     private Geo shopGeo;
+
+    private List<Link> links;
 
     private String status;
     private String error;
@@ -79,6 +83,15 @@ public class Shop {
 
     public void setError(String error) {
         this.error = error;
+    }
+
+
+    public List<Link> getLinks() {
+        return links;
+    }
+
+    public void setLinks(List<Link> links) {
+        this.links = links;
     }
 
     @Override

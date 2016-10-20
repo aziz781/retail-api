@@ -5,13 +5,14 @@ import com.google.maps.GeocodingApi;
 import com.google.maps.model.GeocodingResult;
 import com.retail.manager.domain.Address;
 import com.retail.manager.domain.Geo;
+import com.retail.manager.domain.Link;
 import com.retail.manager.domain.Shop;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Created by abdulaziz on 20/10/2016.
@@ -33,7 +34,26 @@ public class ShopService {
 
     public Set<Shop> getShops()
     {
-        return retailShops;
+        Function<Shop,Shop> addLinks = (e) -> {
+            e.getShopName();
+            List<Link> links = Arrays.asList(new Link("/shops/"+e.getShopName(),"self"));
+            e.setLinks(links);
+            return e;
+        };
+
+         return retailShops
+                 .stream()
+                 .map(addLinks)
+                 .collect(Collectors.toSet());
+    }
+
+
+    public Optional<Shop> getShop(String shopName)
+    {
+            return retailShops
+                    .stream()
+                    .filter(e -> e.getShopName().equals(shopName))
+                    .findFirst();
     }
 
     public Set<Shop> getShopsNearby(Double latitude,Double longitude)
