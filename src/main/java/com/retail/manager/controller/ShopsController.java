@@ -23,14 +23,14 @@ public class ShopsController {
     private ShopService shopService;
 
 
-    @RequestMapping( method= RequestMethod.GET ,produces = "application/json")
+    @RequestMapping( method= RequestMethod.GET ,produces = "application/json;charset=UTF-8")
     public ResponseEntity getShops() {
 
         return new ResponseEntity( shopService.getShops(), null, HttpStatus.OK);
 
     }
 
-    @RequestMapping(value = "/{shopName}",method= RequestMethod.GET ,produces = "application/json")
+    @RequestMapping(value = "/{shopName}",method= RequestMethod.GET ,produces = "application/json;charset=UTF-8")
     public ResponseEntity getShop(@PathVariable("shopName") String shopName) {
 
         Optional<Shop> foundShop = shopService.getShop(shopName);
@@ -47,7 +47,7 @@ public class ShopsController {
     }
 
 
-    @RequestMapping( method= RequestMethod.POST ,consumes = "application/json")
+    @RequestMapping( method= RequestMethod.POST ,consumes = "application/json;charset=UTF-8")
     public ResponseEntity addShop(
             @RequestBody Shop shop) throws Exception{
 
@@ -63,7 +63,7 @@ public class ShopsController {
 
     }
 
-    @RequestMapping(value = "/nearby", method= RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/nearby", method= RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public ResponseEntity getShopsNearby(
             @RequestParam("customerLatitude") Double latitude,
             @RequestParam("customerLongitude") Double longitude) {
