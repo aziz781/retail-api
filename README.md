@@ -71,4 +71,5 @@ Spring MVC
 Google Maps GeoLocation API
 swagger2
 Junit 4
+Mockito
 ```
