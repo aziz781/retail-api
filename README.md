@@ -64,7 +64,7 @@ POST Request body:
 
 
 # Technologies
-##  Spring Boot, Spring MVC , RESTful Services, Swagger2 Mockito
+##  Spring Boot, Spring MVC , RESTful Services, Swagger2, Mockito
 ```
 Spring Boot 1.3.6.RELEASE
 Spring MVC
