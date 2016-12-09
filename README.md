@@ -1,4 +1,4 @@
-# Retail Manager API (Fully Restful API)
+# Retail Manager API (Fully Restful API) ![Build](https://travis-ci.org/aziz781/retail-api.svg?branch=master)
 API at `Level 3` of Richardson Maturity Model
 
 
