@@ -8,6 +8,12 @@ mvn package && java -jar target/retail-api.jar
 
 ```
 
+## Docker Image
+```
+docker pull aziz781/retail-api
+
+```
+
 ## Base URL:
 ```
 http://localhost:8081/retail
