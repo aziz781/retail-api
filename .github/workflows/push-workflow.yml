@@ -1,0 +1,28 @@
+name: 'On PR Created'
+on:
+  push:
+    paths:
+      - 'pom.xml'
+  push:
+    paths:
+      - 'Dockerfile'
+  push:
+    paths:
+      - '.travis.yml'
+      
+jobs:
+  process-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Inputs
+        run: |
+          echo "Env Type: pr createed"
+          echo "event name is:" ${{ github.event_name }} 
+          echo "event type is:" ${{ github.event.action }} 
+      - uses: actions/checkout@v3
+  call-sub-workflow:
+    uses: aziz781/retail-api/.github/workflows/process-workflow.yml@master
+    with:
+      env_type: dev  
+    secrets:   
+      gha_token: "${{ secrets.GITHUB_TOKEN }}"  
