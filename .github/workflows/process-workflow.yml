@@ -2,6 +2,9 @@ name: 'Process PR'
 on:
   workflow_call:
     inputs:
+      gha_token:
+        type: string
+        required: true      
       env_type:
         type: string
         required: true    
@@ -25,7 +28,7 @@ jobs:
         name: code PR merge
         uses: "pascalgn/automerge-action@v0.15.3"
         env:
-          GITHUB_TOKEN: "${{ secrets.GHA_TOKEN }}"
+          GITHUB_TOKEN: "${{ inputs.gha_token }}"
           MERGE_LABELS: "CICD_PR"
           MERGE_METHOD: "squash"
           MERGE_DELETE_BRANCH: "true"     
