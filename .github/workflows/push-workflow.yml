@@ -3,11 +3,7 @@ on:
   push:
     paths:
       - 'pom.xml'
-  push:
-    paths:
       - 'Dockerfile'
-  push:
-    paths:
       - '.travis.yml'
       
 jobs:
