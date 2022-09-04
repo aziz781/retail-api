@@ -28,7 +28,7 @@ jobs:
         name: code PR merge
         uses: "pascalgn/automerge-action@v0.15.3"
         env:
-          GITHUB_TOKEN: "${{ inputs.gha_token }}"
+          GITHUB_TOKEN: "${{ secrets.gha_token }}"
           MERGE_LABELS: "CICD_PR"
           MERGE_METHOD: "squash"
           MERGE_DELETE_BRANCH: "true"     
