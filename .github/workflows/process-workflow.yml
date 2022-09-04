@@ -14,7 +14,9 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: Build with Maven
-        run: mvn clean package -Dmaven.test.skip
+        run: mvn clean package -Dmaven.test.skip      
+      - name: PR-Merge
+        uses: "pascalgn/automerge-action@v0.15.3"
         
 
 
