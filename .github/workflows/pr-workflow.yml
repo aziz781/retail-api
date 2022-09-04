@@ -1,7 +1,14 @@
 name: 'On PR Created'
 on:
-  pull_request_target:
-    types: [opened, reopened]
+  workflow_dispatch:
+    inputs:
+      enviroment:
+        required: true
+        type: choice
+        options:
+        - dev
+        - staging
+        - Integration
     
 jobs:
   process-data:
