@@ -2,7 +2,7 @@ name: 'On PR Created'
 on:
   workflow_dispatch:
     inputs:
-      enviroment:
+      env_type:
         required: true
         type: choice
         options:
@@ -21,4 +21,4 @@ jobs:
   call-sub-workflow:
     uses: aziz781/retail-api/.github/workflows/process-workflow.yml@master
     with:
-      enviroment: dev  
+      env_type: dev  
