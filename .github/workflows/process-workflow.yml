@@ -1,10 +1,7 @@
 name: 'Process PR'
 on:
   workflow_call:
-    inputs:
-      gha_token:
-        type: string
-        required: true      
+    inputs:     
       env_type:
         type: string
         required: true    
