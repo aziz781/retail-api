@@ -5,7 +5,15 @@ on:
     types: [opened, reopened]
     
 jobs:
-  call-sub-workflow:
-    uses: process-workflow.yml@main
-    with:
-      enviroment: dev  
+  process-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Inputs
+        run: |
+          echo "Env Type: ${{ inputs.enviroment }}"
+      - uses: actions/checkout@v3
+      
+  #call-sub-workflow:
+   # uses: process-workflow.yml@main
+    #with:
+     # enviroment: dev  
