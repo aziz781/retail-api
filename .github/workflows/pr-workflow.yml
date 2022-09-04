@@ -1,10 +1,7 @@
 name: 'On PR Created'
 on:
   workflow_dispatch:
-    inputs:
-      gha_token:
-        required: true
-        type: string    
+    inputs:  
       env_type:
         required: true
         type: choice
