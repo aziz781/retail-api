@@ -1,5 +1,4 @@
 name: 'On PR Created'
-
 on:
   pull_request_target:
     types: [opened, reopened]
@@ -10,7 +9,7 @@ jobs:
     steps:
       - name: Print Inputs
         run: |
-          echo "Env Type: ${{ inputs.enviroment }}"
+          echo "Env Type: pr createed"
       - uses: actions/checkout@v3
       
   #call-sub-workflow:
