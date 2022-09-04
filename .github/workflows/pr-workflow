@@ -1,7 +1,7 @@
 name: 'On PR Created'
 on:
   pull_request_target:
-  types: [opened]
+    types: [opened]
   
 jobs:
   call-sub-workflow:
