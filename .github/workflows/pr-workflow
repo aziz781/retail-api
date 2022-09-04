@@ -1,0 +1,10 @@
+name: 'On PR Created'
+on:
+  pull_request_target:
+  types: [opened]
+  
+jobs:
+  call-sub-workflow:
+    uses: process-workflow.yml@main
+    with:
+      enviroment: dev  
