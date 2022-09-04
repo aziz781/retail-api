@@ -1,5 +1,7 @@
 name: 'On PR Created'
 on:
+  pull_request_target:
+    types: [open,reopened]
   workflow_dispatch:
     inputs:  
       env_type:
