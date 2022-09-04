@@ -1,7 +1,12 @@
 name: 'Process PR'
 on:
-  pull_request_target:
-    types: [opened]
+#   pull_request_target:
+#     types: [opened]
+  workflow_call:
+    inputs:
+      enviroment:
+        type: string
+        required: true    
   
 jobs:
   process-data:
