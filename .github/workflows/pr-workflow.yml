@@ -2,6 +2,9 @@ name: 'On PR Created'
 on:
   workflow_dispatch:
     inputs:
+      gha_token:
+        required: true
+        type: string    
       env_type:
         required: true
         type: choice
@@ -22,3 +25,4 @@ jobs:
     uses: aziz781/retail-api/.github/workflows/process-workflow.yml@master
     with:
       env_type: dev  
+      gha_token: "${{ secrets.GHA_TOKEN }}"  
