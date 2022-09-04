@@ -1,8 +1,9 @@
 name: 'On PR Created'
+
 on:
   pull_request_target:
-    types: [opened]
-  
+    types: [opened, reopened]
+    
 jobs:
   call-sub-workflow:
     uses: process-workflow.yml@main
