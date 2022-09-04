@@ -1,6 +1,9 @@
 name: 'Process PR'
 on:
   workflow_call:
+    secrets:
+      gha_token:
+        description: 'Github Secret'  
     inputs:     
       env_type:
         type: string
