@@ -15,11 +15,14 @@ jobs:
           distribution: 'adopt'
       - name: Build with Maven
         run: mvn clean package -Dmaven.test.skip      
-      - id: automerge
-        name: automerge
+      - name: PR-Merge
         uses: "pascalgn/automerge-action@v0.15.3"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          MERGE_LABELS: "CICD_PR"
+          MERGE_METHOD: "squash"
+          MERGE_DELETE_BRANCH: "true"          
+          
         
 
 
