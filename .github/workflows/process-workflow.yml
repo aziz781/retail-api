@@ -22,8 +22,8 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Build with Maven
-        run: mvn clean package -Dmaven.test.skip      
+#       - name: Build with Maven
+#         run: mvn clean package -Dmaven.test.skip      
       - id: codemerge
         name: code PR merge
         uses: "pascalgn/automerge-action@v0.15.3"
