@@ -22,4 +22,5 @@ jobs:
     uses: aziz781/retail-api/.github/workflows/process-workflow.yml@master
     with:
       env_type: dev  
-      gha_token: "${{ secrets.GHA_TOKEN }}"  
+    secrets:   
+      gha_token: "${{ secrets.GITHUB_TOKEN }}"  
