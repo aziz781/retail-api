@@ -11,8 +11,7 @@ jobs:
         run: |
           echo "Env Type: pr createed"
       - uses: actions/checkout@v3
-      
-  #call-sub-workflow:
-   # uses: process-workflow.yml@main
-    #with:
-     # enviroment: dev  
+  call-sub-workflow:
+    uses: process-workflow.yml@main
+    with:
+      enviroment: dev  
