@@ -24,7 +24,7 @@ jobs:
           MERGE_METHOD: "squash"
           MERGE_DELETE_BRANCH: "true"     
       - name: Bump version and push tag
-        if: steps.codemerge.outputs.mergeResult == "merged"
+        if: steps.codemerge.outputs.mergeResult == 'merged'
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.0
         with:
