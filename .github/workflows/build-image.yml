@@ -7,6 +7,7 @@ jobs:
   build-image:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -17,4 +18,4 @@ jobs:
       - name: Build docker image
         run: |
           cd ${GITHUB_WORKSPACE} || exit 1
-          docker build -t "retail-api:latest" -f Dockerfile .
+          docker build -t "retail-api:latest" .
