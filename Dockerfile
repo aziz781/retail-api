@@ -25,8 +25,8 @@ USER appuser:appgroup
 
 WORKDIR /app
 # Copy in compile assets and deps from build container
-COPY --chown=appuser:appgroup --from=builder /app/node_modules ./node_modules
-COPY --chown=appuser:appgroup --from=builder /app/dist ./dist
+# COPY --chown=appuser:appgroup --from=builder /app/node_modules ./node_modules
+# COPY --chown=appuser:appgroup --from=builder /app/dist ./dist
 COPY --chown=appuser:appgroup --from=builder /app/src ./src
 # COPY --chown=appuser:appgroup --from=builder /app/package.json ./
 # COPY --chown=appuser:appgroup --from=builder /app/package-lock.json ./
