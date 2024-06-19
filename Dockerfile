@@ -10,11 +10,11 @@ WORKDIR /app
 COPY /src ./src
 
 
-RUN npm install
-RUN npm run build
+# RUN npm install
+# RUN npm run build
 
 # 'npm install --omit=dev' does not prune test packages which are necessary
-RUN npm install --omit=dev
+# RUN npm install --omit=dev
 
 FROM --platform="linux/arm64"  arm64v8/node@sha256:b16c4e21f9e9e4d02c226d7b2dde3283fc9315104b66009af546b50f5c7acad4 as final
 #RUN addgroup -S appgroup && adduser -S appuser -G appgroup
