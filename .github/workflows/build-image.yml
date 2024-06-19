@@ -17,4 +17,4 @@ jobs:
       - name: Build docker image
         run: |
           cd ${GITHUB_WORKSPACE} || exit 1
-          docker build -t "retail-api:latest" .
+          docker build -t "retail-api:latest" -f Dockerfile
